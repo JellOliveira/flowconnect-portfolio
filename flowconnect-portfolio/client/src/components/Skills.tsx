@@ -150,7 +150,7 @@ export default function Skills() {
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-blue-700 rounded-full" />
-              <span className="text-gray-700">Especizalizando em Full Stack</span>
+              <span className="text-gray-700">Especializando em Full Stack</span>
             </div>
           </div>
         </div>

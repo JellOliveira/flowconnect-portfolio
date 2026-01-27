@@ -133,7 +133,6 @@ export default function Contact() {
                 <div className="flex gap-4">
                   <a
                     href="https://github.com/JellOliveira"
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-lg bg-gray-100 text-gray-700 flex items-center justify-center hover:bg-blue-100 hover:text-blue-700 transition-all"
                     title="GitHub"
@@ -142,7 +141,6 @@ export default function Contact() {
                   </a>
                   <a
                     href="https://www.linkedin.com/in/jessica-oliveira-meira/"
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-lg bg-gray-100 text-gray-700 flex items-center justify-center hover:bg-blue-100 hover:text-blue-700 transition-all"
                     title="LinkedIn"

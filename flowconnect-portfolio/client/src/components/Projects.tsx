@@ -31,10 +31,10 @@ const projects: Project[] = [
   },
   {
     id: "2",
-    title: "Site de Automação e Apresentação",
+    title: "Site de Disparo e Agendamento de Mensagens",
     company: "CDE Digital",
     description:
-      "Desenvolvimento completo de site profissional com apresentação de soluções de automação, onde é feito um disparo de mensagem para uma lista de leads e é feito um agendamento de mensagem individual e em grupos. Design responsivo e otimizado para anexar a mensagem que seja disparar para os leads.",
+      "Desenvolvimento completo de site profissional com apresentação de soluções de automação, onde é feito um disparo de mensagem para uma lista de leads e é feito um agendamento de mensagem individual e em grupos. Design responsivo e otimizado para anexar a mensagem que deseja disparar para os leads de uma só vez com espaçamento de segundos para cada lead.",
     technologies: ["HTML", "CSS", "Evolution API", "N8N", "Design Responsivo"],
     videoPath:
       "/images/Apresentação do site FlowConnect Dev.mp4",
@@ -44,7 +44,7 @@ const projects: Project[] = [
     title: "Automação de Lembretes de Agendamento",
     company: "Projeto Pessoal",
     description:
-      "Sistema de automação que envia lembretes automáticos via WhatsApp para agendamentos. Integração com calendários do Google.",
+      "Sistema de automação que envia lembretes automáticos via WhatsApp para agendamentos. Integração com calendário do Google Agenda.",
     technologies: ["N8N", "WhatsApp", "Python", "API Evolution"],
     videoPath: "/images/lembrete de agendamento.jpg",
   },

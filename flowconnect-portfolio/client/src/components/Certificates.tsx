@@ -24,7 +24,7 @@ const certificates: Certificate[] = [
     title: "Criando um Agente com Gemini",
     issuer: "Xpiria",
     date: "2025",
-    path: "/images/Certificado criando um agente com gemini.pdf",
+    path: "/images/Certificado/certificado-criando-um-agente-com-gemini.pdf",
     category: "IA",
   },
   {
@@ -32,7 +32,7 @@ const certificates: Certificate[] = [
     title: "Imersão Dev com Google Gemini",
     issuer: "Alura",
     date: "2024",
-    path: "/images/Certificado Imersão Dev com Google Gemini.pdf",
+    path: "/images/Certificado/certificado-imersão-dev-com-google-gemini.pdf",
     category: "IA",
   },
   {
@@ -40,7 +40,7 @@ const certificates: Certificate[] = [
     title: "Imersão Inteligência Artificial",
     issuer: "Alura",
     date: "2024",
-    path: "/images/Certificado Imersão inteligência artificial.PDF",
+    path: "/images/Certificado/certificado-imersão-inteligência-artificial.pdf",
     category: "IA",
   },
   {
@@ -48,7 +48,7 @@ const certificates: Certificate[] = [
     title: "Introdução à Linguagem Python",
     issuer: "Alura",
     date: "2023",
-    path: "/images/Certificado/INTRODUÇÃO À LINGUAGEM PYTHON.pdf",
+    path: "/images/Certificado/certificado-introdução-à-linguagem-python.pdf",
     category: "Python",
   },
   {
@@ -56,7 +56,7 @@ const certificates: Certificate[] = [
     title: "Estruturas de Dados em Python",
     issuer: "Anhanguera",
     date: "2024",
-    path: "/images/Certificado/ESTRUTURAS DE DADOS EM PYTHON.pdf",
+    path: "/images/Certificado/certificado-estruturas-de-dados-em-python.pdf",
     category: "Python",
   },
   {
@@ -64,7 +64,7 @@ const certificates: Certificate[] = [
     title: "Introdução à Análise de Dados com Python",
     issuer: "Anhanguera",
     date: "2024",
-    path: "/images/Certificado/INTRODUÇÃO À ANÁLISE DE DADOS COM PYTHON.pdf",
+    path: "/images/Certificado/certificado-introdução-à-análise-de-dados-com-python.pdf",
     category: "Python",
   },
   {
@@ -72,7 +72,7 @@ const certificates: Certificate[] = [
     title: "Curso de Informática Avançado",
     issuer: "Prime Cursos",
     date: "2023",
-    path: "/images/Certificado/CERTIFICADO DO CURSO DE INFORMATICA AVANÇADO.pdf",
+    path: "/images/Certificado/certificado-do-curso-de-informática-avançado.pdf",
     category: "Informática",
   },
   {
@@ -80,7 +80,7 @@ const certificates: Certificate[] = [
     title: "Curso de Python",
     issuer: "Curso em Vídeo",
     date: "2024",
-    path: "/images/Certificado/[CURSO EM VIDEO] Curso de Pyhon realizado mais sem certificado.png",
+    path: "/images/Certificado/certificado-curso-de-python.png",
     category: "Python",
   },
   {
@@ -88,7 +88,7 @@ const certificates: Certificate[] = [
     title: "Curso de MySQL",
     issuer: "Curso em Vídeo",
     date: "2024",
-    path: "/images/Certificado/[CURSO EM VIDEO] Curso de MySQL realizado mais sem certificado.png",
+    path: "/images/Certificado/certificado-curso-de-mysql.png",
     category: "Banco de Dados",
   },
 ];
@@ -124,7 +124,7 @@ export default function Certificates() {
             Certificados & Cursos
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Formação contínua em tecnologia, automação e inteligência
+            Formação contínua em tecnologia, programação, automação e inteligência
             artificial.
           </p>
         </div>
@@ -135,11 +135,10 @@ export default function Certificates() {
             <button
               key={category}
               onClick={() => setFilter(category)}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
-                filter === category
-                  ? "bg-gradient-to-r from-blue-700 to-cyan-500 text-white shadow-lg"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${filter === category
+                ? "bg-gradient-to-r from-blue-700 to-cyan-500 text-white shadow-lg"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
             >
               {category === "all" ? "Todos" : category}
             </button>
