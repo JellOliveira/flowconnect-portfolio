@@ -24,7 +24,7 @@ export default function Footer() {
               <span className="font-bold text-white">FLOWCONNECT DEV</span>
             </div>
             <p className="text-sm text-gray-400">
-              Automação, desenvolvimento e inteligência artificial para
+              Automação, desenvolvimento WEB e inteligência artificial para
               transformar seu negócio.
             </p>
           </div>
@@ -82,7 +82,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+5577991410379"
+                  href="https://wa.me/5577991410379"
                   className="text-gray-400 hover:text-cyan-400 transition-colors"
                 >
                   (77) 99141-0379
@@ -103,9 +103,7 @@ export default function Footer() {
               reservados.
             </p>
             <p className="mt-4 md:mt-0">
-              Desenvolvido com{" "}
-              <span className="text-cyan-400">&#10084;</span> por Jéssica
-              Oliveira
+              Desenvolvido por Jéssica Oliveira Meira
             </p>
           </div>
         </div>

@@ -29,7 +29,7 @@ export default function Hero() {
                 Bem-vindo ao meu portfólio
               </span>
               <h1 className="text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                <span className="text-gray-900">Jéssica Oliveira Meira</span>
+                <span className="text-gray-900">Jéssica Oliveira</span>
                 <br />
                 <span className="bg-gradient-to-r from-blue-700 to-cyan-500 bg-clip-text text-transparent">
                   Automação & IA
@@ -38,7 +38,7 @@ export default function Hero() {
             </div>
 
             <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-              Especialista em automação com N8N, desenvolvimento web e criação de agentes de IA com Gemini.
+              Especialista em automação com N8N, desenvolvimento web e criação de agentes de IA com Gemini e ChatGPT.
               Transformo processos manuais em soluções inteligentes e escaláveis.
             </p>
 

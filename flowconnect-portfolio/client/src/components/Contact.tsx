@@ -30,14 +30,22 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Criar mailto link com os dados do formulário
-    const mailtoLink = `mailto:jell.meira.30@gmail.com?subject=Contato de ${formData.name}&body=${encodeURIComponent(
-      `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
-    )}`;
+    const to = "jell.meira.30@gmail.com";
+    const subject = `Contato pelo Portfólio - ${formData.name}`;
+    const body = [
+      `Nome: ${formData.name}`,
+      `Email: ${formData.email}`,
+      "",
+      "Mensagem:",
+      formData.message,
+    ].join("\n");
+
+    const mailtoLink = `mailto:${to}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailtoLink;
 
-    // Resetar formulário
     setFormData({ name: "", email: "", message: "" });
     setSubmitted(true);
 
@@ -92,7 +100,7 @@ export default function Contact() {
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Telefone</h3>
                   <a
-                    href="tel:+5577991410379"
+                    href="https://wa.me/5577991410379"
                     className="text-gray-600 hover:text-blue-700 transition-colors"
                   >
                     (77) 99141-0379

@@ -22,10 +22,10 @@ interface Project {
 const projects: Project[] = [
   {
     id: "1",
-    title: "Chatbot de Atendimento Automático",
+    title: "Chatbot de Encaminhamento de Atendimento Automático",
     company: "C. Amorim",
     description:
-      "Sistema de chatbot via WhatsApp com integração N8N para automação de atendimento ao cliente. Respostas inteligentes e roteamento de tickets.",
+      "Sistema de chatbot inteligente via WhatsApp com automação N8N, menu interativo por loja e setor, distribuição automática por fila de funcionários, registro completo de atendimentos no Google Sheets, tratamento de mensagens fora do horário comercial e envio automático de pesquisa de satisfação com análise de conversão.",
     technologies: ["N8N", "WhatsApp API", "Google Sheets", "Automação"],
     videoPath: "/images/chatbot-c-amorim-compressed.mp4",
   },
@@ -34,19 +34,19 @@ const projects: Project[] = [
     title: "Site de Automação e Apresentação",
     company: "CDE Digital",
     description:
-      "Desenvolvimento completo de site profissional em 4K com apresentação de soluções de automação. Design responsivo e otimizado para conversão.",
+      "Desenvolvimento completo de site profissional com apresentação de soluções de automação, onde é feito um disparo de mensagem para uma lista de leads e é feito um agendamento de mensagem individual e em grupos. Design responsivo e otimizado para anexar a mensagem que seja disparar para os leads.",
     technologies: ["HTML", "CSS", "Evolution API", "N8N", "Design Responsivo"],
     videoPath:
-      "/images/[Em 4K] Apresentação do site FlowConnect Dev - Empresa CDE Digital.mp4",
+      "/images/Apresentação do site FlowConnect Dev.mp4",
   },
   {
     id: "3",
     title: "Automação de Lembretes de Agendamento",
     company: "Projeto Pessoal",
     description:
-      "Sistema de automação que envia lembretes automáticos via WhatsApp para agendamentos. Integração com calendários e banco de dados.",
+      "Sistema de automação que envia lembretes automáticos via WhatsApp para agendamentos. Integração com calendários do Google.",
     technologies: ["N8N", "WhatsApp", "Python", "API Evolution"],
-    videoPath: "/images/Automação de lembrete de agendamento automático via  Whatsapp.jpg",
+    videoPath: "/images/lembrete de agendamento.jpg",
   },
 ];
 

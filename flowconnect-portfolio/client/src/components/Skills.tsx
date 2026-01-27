@@ -99,7 +99,7 @@ export default function Skills() {
             Habilidades Técnicas
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Expertise em automação, desenvolvimento web e inteligência artificial
+            Experiência em automação, desenvolvimento web e inteligência artificial
           </p>
         </div>
 
@@ -150,7 +150,7 @@ export default function Skills() {
             </div>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-blue-700 rounded-full" />
-              <span className="text-gray-700">Especialização em IA Avançada</span>
+              <span className="text-gray-700">Especizalizando em Full Stack</span>
             </div>
           </div>
         </div>
