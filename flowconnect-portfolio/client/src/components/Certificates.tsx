@@ -40,7 +40,7 @@ const certificates: Certificate[] = [
     title: "Imersão Inteligência Artificial",
     issuer: "Alura",
     date: "2024",
-    path: "/images/Certificado/certificado-imersão-inteligência-artificial.pdf",
+    path: "/images/Certificado/certificado-imersão-ia.pdf",
     category: "IA",
   },
   {
