@@ -1,3 +1,5 @@
+FROM node:20-alpine AS builder
+
 # Dockerfile for FlowConnect Portfolio
 # NOTE: This file assumes the build context is the project root.
 # Run the build command from the project root (one level up):
@@ -6,7 +8,6 @@
 # ==========================================
 # Stage 1: Builder
 # ==========================================
-FROM node:20-alpine AS builder
 
 # Install pnpm
 RUN npm install -g pnpm
