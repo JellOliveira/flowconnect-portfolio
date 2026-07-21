@@ -113,7 +113,7 @@ export default function Hero() {
             {/* Badge flutuante */}
             <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg border border-gray-200 shadow-float">
               <div className="text-center">
-                <p className="text-2xl font-bold text-blue-700">5º Semestre</p>
+                <p className="text-2xl font-bold text-blue-700">Formada em</p>
                 <p className="text-sm text-gray-600">Análise e Desenvolvimento de Sistemas</p>
               </div>
             </div>
