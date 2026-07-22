@@ -83,6 +83,27 @@ const projects: Project[] = [
     ],
     videoPath: "/images/plataforma-cursos-escola-gideao.mp4",
   },
+  {
+    id: "6",
+    title: "Automação e Dashboard de Controle Financeiro — FlowMoney",
+    company: "Projeto Pessoal",
+    description:
+      "Desenvolvi um sistema pessoal de controle financeiro completo, tendo o WhatsApp como interface principal. Basta enviar uma mensagem de texto, foto de comprovante ou PDF de extrato para registrar qualquer transação — a IA interpreta a linguagem natural, extrai os dados automaticamente e confirma com o usuário antes de salvar. O sistema gerencia gastos, receitas, parcelas, contas recorrentes, faturas de cartão e valores a receber de terceiros. Alertas inteligentes chegam pelo próprio WhatsApp: lembretes de vencimento, avisos quando a fatura do cartão se aproxima, alertas ao atingir o limite mensal de gastos e cobranças de dívidas pendentes. Um relatório mensal completo é enviado automaticamente no último dia de cada mês. Tudo é visualizado em um dashboard web responsivo (FlowMoney), com login protegido, gráficos de evolução mensal e por categoria, controle de orçamento com barras de progresso, gestão de metas de economia, parcelas em andamento e muito mais — com modo demonstração para portfólio.",
+    technologies: [
+      "N8N",
+      "Evolution API",
+      "OpenAI",
+      "Google Sheets",
+      "Node.js",
+      "Express.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Chart.js",
+      "JWT + bcrypt",
+    ],
+    videoPath: "/images/flowmoney-controle-financeiro.mp4",
+  },
 ];
 
 export default function Projects() {
