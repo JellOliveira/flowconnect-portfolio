@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Companies from "@/components/Companies";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Certificates from "@/components/Certificates";
@@ -13,11 +14,12 @@ import Footer from "@/components/Footer";
  * Estrutura:
  * 1. Header - Navegação fixa
  * 2. Hero - Apresentação principal
- * 3. Projects - Portfólio de projetos
- * 4. Skills - Habilidades técnicas
- * 5. Certificates - Certificados e cursos
- * 6. Contact - Formulário e informações de contato
- * 7. Footer - Rodapé
+ * 3. Companies - Empresas fundadas/co-fundadas
+ * 4. Projects - Portfólio de projetos
+ * 5. Skills - Habilidades técnicas
+ * 6. Certificates - Certificados e cursos
+ * 7. Contact - Formulário e informações de contato
+ * 8. Footer - Rodapé
  */
 
 export default function Home() {
@@ -26,6 +28,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Companies />
         <Projects />
         <Skills />
         <Certificates />
