@@ -48,6 +48,25 @@ const projects: Project[] = [
     technologies: ["N8N", "WhatsApp", "Python", "API Evolution"],
     videoPath: "/images/lembrete de agendamento.jpg",
   },
+  {
+    id: "4",
+    title: "Automação de Emissão de Contratos Automático",
+    company: "CDE Educação",
+    description:
+      "Automação completa do ciclo de vida de contratos: captura de dados via formulário, geração automática do documento personalizado, envio para assinatura eletrônica com fluxo sequencial (cliente + 2 testemunhas) via Autentique, notificações automáticas por e-mail e WhatsApp em cada etapa da assinatura, e entrega automática do PDF final assinado — com todo o status sincronizado em tempo real numa planilha de controle.",
+    technologies: [
+      "Make",
+      "Google Sheets",
+      "Google Docs API",
+      "Autentique API",
+      "GraphQL",
+      "Brevo",
+      "Evolution API",
+      "Automação",
+      "Typeform",
+    ],
+    videoPath: "/images/automacao-contrato-cde-educacao.mp4",
+  },
 ];
 
 export default function Projects() {
