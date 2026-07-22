@@ -136,6 +136,11 @@ export default function Hero() {
               alt="CDE Digital"
               className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
+            <img
+              src="/images/Logo das empresas que fiz sistema/Gideao-logo.png"
+              alt="Escola Gideão"
+              className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
+            />
           </div>
         </div>
       </div>
