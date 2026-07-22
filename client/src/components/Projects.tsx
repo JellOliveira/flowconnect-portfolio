@@ -67,6 +67,22 @@ const projects: Project[] = [
     ],
     videoPath: "/images/automacao-contrato-cde-educacao.mp4",
   },
+  {
+    id: "5",
+    title: "Plataforma de Cursos TrioVision Tech",
+    company: "Escola Gideão",
+    description:
+      "Desenvolvemos uma plataforma completa de cursos online sob medida para a Escola Gideão, com arquitetura multi-tenant que permite escalar para novas escolas de forma independente — cada uma com seu próprio subdomínio, painel administrativo e identidade visual. O sistema conta com dashboard de gestão de alunos e conteúdos, portal para desenvolvedores, envio automatizado de e-mails de acesso e recuperação de senha com a marca da escola, e uma estrutura de banco de dados robusta para suportar múltiplos clientes simultaneamente. Projeto desenvolvido pela TrioVision Tech 👩‍💻 Jéssica Oliveira | Thiago Correia | Lucas Alves",
+    technologies: [
+      "JavaScript",
+      "TypeScript",
+      "HTML5",
+      "CSS3",
+      "SQL (PostgreSQL)",
+      "Supabase",
+    ],
+    videoPath: "/images/plataforma-cursos-escola-gideao.mp4",
+  },
 ];
 
 export default function Projects() {
