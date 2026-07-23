@@ -93,8 +93,16 @@ const certificates: Certificate[] = [
   },
 ];
 
+const diploma = {
+  title: "Tecnóloga em Análise e Desenvolvimento de Sistemas",
+  issuer: "Universidade Pitágoras Unopar Anhanguera",
+  date: "2026",
+  path: "/images/diploma-jessica-oliveira-2026.png",
+};
+
 export default function Certificates() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+  const [showDiploma, setShowDiploma] = useState(false);
   const [filter, setFilter] = useState<string>("all");
 
   const categories = [
@@ -127,6 +135,38 @@ export default function Certificates() {
             Formação contínua em tecnologia, programação, automação e inteligência
             artificial.
           </p>
+        </div>
+
+        {/* Diploma em Destaque */}
+        <div className="mb-16 animate-fade-in-up">
+          <div
+            onClick={() => setShowDiploma(true)}
+            className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 to-cyan-500 rounded-2xl overflow-hidden shadow-float cursor-pointer group"
+          >
+            <div className="flex flex-col md:flex-row items-center gap-6 p-6 md:p-8">
+              <div className="w-full md:w-64 flex-shrink-0 rounded-lg overflow-hidden border-4 border-white/30 shadow-lg">
+                <img
+                  src={diploma.path}
+                  alt={diploma.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="text-center md:text-left text-white">
+                <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-xs font-semibold mb-3 uppercase tracking-wide">
+                  Diploma
+                </span>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                  {diploma.title}
+                </h3>
+                <p className="text-white/90 mb-1">{diploma.issuer}</p>
+                <p className="text-white/80 text-sm mb-4">{diploma.date}</p>
+                <button className="inline-flex items-center gap-2 px-5 py-2 bg-white text-blue-700 rounded-lg font-medium hover:shadow-lg transition-all">
+                  <Award className="w-4 h-4" />
+                  Ver Diploma
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Filter Buttons */}
@@ -198,6 +238,56 @@ export default function Certificates() {
           </div>
         )}
       </div>
+
+      {/* Modal do Diploma */}
+      {showDiploma && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fade-in-up">
+          <div className="bg-white rounded-2xl overflow-hidden max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center p-6 border-b border-gray-200">
+              <div>
+                <p className="text-sm font-semibold text-blue-700 uppercase mb-1">
+                  Diploma
+                </p>
+                <h3 className="text-2xl font-bold text-gray-900">
+                  {diploma.title}
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowDiploma(false)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <p className="text-gray-600 mb-1">
+                <span className="font-semibold text-gray-900">Instituição:</span>{" "}
+                {diploma.issuer}
+              </p>
+              <p className="text-gray-600 mb-6">
+                <span className="font-semibold text-gray-900">Ano:</span>{" "}
+                {diploma.date}
+              </p>
+
+              <img
+                src={diploma.path}
+                alt={diploma.title}
+                className="w-full rounded-lg border border-gray-200 mb-6"
+              />
+
+              <a
+                href={diploma.path}
+                download
+                className="w-full py-3 bg-gradient-to-r from-blue-700 to-cyan-500 text-white rounded-lg font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              >
+                <Download className="w-5 h-5" />
+                Baixar Diploma
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Modal */}
       {selectedCert && (
