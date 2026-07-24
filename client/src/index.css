@@ -43,9 +43,23 @@
 }
 
 :root {
+  /* FLOWCONNECT DEV - Redesign 2026 - Dark Mode / Linear-inspired */
+  --fc-bg: #050608;
+  --fc-surface: rgba(255, 255, 255, 0.025);
+  --fc-border: rgba(255, 255, 255, 0.09);
+  --fc-cyan: #2ec0ee;
+  --fc-brand: #1577d6;
+  --fc-blue: #1577d6;
+  --fc-green: #2bd98b;
+  --fc-purple: #a78bfa;
+  --fc-text: #f3f6fa;
+  --fc-text2: #a9b4c4;
+  --fc-text3: #6b7688;
+  --fc-grad: linear-gradient(135deg, #2ec0ee, #1577d6);
+
   /* FLOWCONNECT DEV - Tema Corporativo Azul/Ciano */
   /* Design Philosophy: Minimalismo Corporativo com Gradientes Dinâmicos */
-  
+
   --primary: #0a4696; /* Azul profundo - confiança e expertise */
   --primary-foreground: #ffffff;
   --sidebar-primary: #0a4696;
@@ -121,7 +135,13 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background: #050608;
+    color: #f3f6fa;
+    font-family: "Manrope", sans-serif;
+  }
+  ::selection {
+    background: #2ec0ee;
+    color: #04121f;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -189,6 +209,86 @@
 
   .animate-pulse-glow {
     animation: pulseGlow 2s infinite;
+  }
+
+  /* Redesign 2026 - keyframes */
+  @keyframes floatBlobA {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-50px, 70px) scale(1.18); }
+  }
+  @keyframes floatBlobB {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, -40px) scale(1.1); }
+  }
+  @keyframes fcMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes gradShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  @keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes rotateGlow {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.32; }
+    50% { opacity: 0.6; }
+  }
+  @keyframes neonSpin {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 100%; }
+  }
+  @keyframes fcSpin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes fcReveal {
+    from { opacity: 0; transform: translateY(26px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-float-blob-a { animation: floatBlobA 17s ease-in-out infinite alternate; }
+  .animate-float-blob-b { animation: floatBlobB 19s ease-in-out infinite alternate; }
+  .animate-fc-marquee { animation: fcMarquee 26s linear infinite; }
+  .animate-fc-marquee-slow { animation: fcMarquee 22s linear infinite; }
+  .animate-grad-shift { animation: gradShift 4s ease infinite; }
+  .animate-float-badge { animation: floatBadge 3.4s ease-in-out infinite; }
+  .animate-rotate-glow { animation: rotateGlow 7s linear infinite; }
+  .animate-glow-pulse { animation: glowPulse 4s ease-in-out infinite; }
+  .animate-neon-spin { animation: neonSpin 3.4s ease-in-out infinite alternate; }
+  .animate-fc-spin { animation: fcSpin 0.7s linear infinite; }
+
+  .fc-reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.3, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .fc-reveal.fc-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fc-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .animate-float-blob-a,
+    .animate-float-blob-b,
+    .animate-fc-marquee,
+    .animate-fc-marquee-slow,
+    .animate-grad-shift,
+    .animate-float-badge,
+    .animate-rotate-glow,
+    .animate-glow-pulse,
+    .animate-neon-spin {
+      animation: none !important;
+    }
   }
 
   /* Estilo de links com underline animado */

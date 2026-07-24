@@ -2,50 +2,53 @@ import {
   Code2,
   Zap,
   Database,
-  Brain,
+  Cpu,
   MessageSquare,
-  Workflow,
+  Activity,
 } from "lucide-react";
+import Reveal from "./Reveal";
 
 /**
  * FLOWCONNECT DEV - Skills Section
- * Design Philosophy: Minimalismo Corporativo
- * - Categorias de habilidades com ícones
- * - Grid responsivo com badges
- * - Animações ao scroll
+ * Redesign 2026: cards com efeito "shine border" (feixe cônico rotativo)
  */
 
 interface SkillCategory {
   title: string;
   icon: React.ReactNode;
   skills: string[];
-  color: string;
+  gradient: string;
+  accent: string;
 }
 
 const skillCategories: SkillCategory[] = [
   {
     title: "Automação",
-    icon: <Workflow className="w-6 h-6" />,
+    icon: <Activity className="w-6 h-6" />,
     skills: ["N8N", "Make", "API Evolution", "Integração com APIs", "WhatsApp Automation"],
-    color: "from-blue-500 to-blue-600",
+    gradient: "linear-gradient(135deg,#1F94E0,#1577D6)",
+    accent: "#1F94E0",
   },
   {
     title: "Desenvolvimento Web",
     icon: <Code2 className="w-6 h-6" />,
     skills: ["HTML5", "CSS3", "JavaScript", "React", "Tailwind CSS"],
-    color: "from-cyan-500 to-cyan-600",
+    gradient: "linear-gradient(135deg,#2BB7E8,#1F94E0)",
+    accent: "#2BB7E8",
   },
   {
     title: "Backend & Banco de Dados",
     icon: <Database className="w-6 h-6" />,
     skills: ["Python", "MySQL", "Supabase", "Node.js", "Cloudflare"],
-    color: "from-indigo-500 to-indigo-600",
+    gradient: "linear-gradient(135deg,#5B6EE8,#1577D6)",
+    accent: "#5B6EE8",
   },
   {
     title: "Inteligência Artificial",
-    icon: <Brain className="w-6 h-6" />,
+    icon: <Cpu className="w-6 h-6" />,
     skills: ["Google Gemini", "ChatGPT", "Claude AI", "Lovable", "Agentes de IA", "Processamento de Linguagem"],
-    color: "from-purple-500 to-purple-600",
+    gradient: "linear-gradient(135deg,#A78BFA,#5B6EE8)",
+    accent: "#A78BFA",
   },
   {
     title: "Comunicação & Integração",
@@ -57,7 +60,8 @@ const skillCategories: SkillCategory[] = [
       "Google Docs",
       "API Brevo",
     ],
-    color: "from-pink-500 to-pink-600",
+    gradient: "linear-gradient(135deg,#FF6BA6,#A78BFA)",
+    accent: "#FF6BA6",
   },
   {
     title: "Ferramentas & Plataformas",
@@ -69,91 +73,83 @@ const skillCategories: SkillCategory[] = [
       "VS Code",
       "Figma",
     ],
-    color: "from-orange-500 to-orange-600",
+    gradient: "linear-gradient(135deg,#FFB454,#FF6BA6)",
+    accent: "#FFB454",
   },
 ];
 
 export default function Skills() {
   return (
-    <section
-      id="skills"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50 relative"
-    >
-      {/* Background Pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-40"
-        style={{
-          backgroundImage: `url(/images/skills-pattern.jpg)`,
-          backgroundSize: "cover",
-          backgroundAttachment: "fixed",
-        }}
-      />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
+    <section id="skills" className="py-24 px-6 bg-[#050608] relative">
+      <div className="max-w-[1240px] mx-auto relative z-10">
+        <Reveal className="text-center mb-14">
+          <span className="inline-block px-4 py-[7px] bg-white/4 border border-white/10 text-[#2ec0ee] rounded-full text-[12.5px] font-bold mb-4">
             Competências
           </span>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="font-[Sora] font-extrabold text-[clamp(2rem,3.8vw,2.8rem)] mb-3.5 tracking-[-0.02em] text-[#f3f6fa]">
             Habilidades Técnicas
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Experiência em automação, desenvolvimento web e inteligência artificial
+          <p className="text-[#a9b4c4] text-[17px] max-w-[600px] mx-auto">
+            Experiência em automação, desenvolvimento web e inteligência
+            artificial.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
           {skillCategories.map((category, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200 animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
+            <Reveal
+              key={category.title}
+              delay={index * 80}
+              className="relative rounded-[22px] p-0.5 overflow-hidden hover:-translate-y-1.5 transition-transform duration-300"
             >
-              {/* Icon */}
               <div
-                className={`inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br ${category.color} text-white mb-6 group-hover:scale-110 transition-transform`}
-              >
-                {category.icon}
+                className="absolute left-1/2 top-1/2 w-[220%] h-[220%] pointer-events-none"
+                style={{
+                  transform: "translate(-50%,-50%)",
+                  background: `conic-gradient(from 90deg, transparent 0%, transparent 82%, ${category.accent} 100%)`,
+                  animation: `rotateGlow ${5 + index * 0.6}s linear infinite`,
+                }}
+              />
+              <div className="relative z-10 bg-[#0a0c10] rounded-[20px] p-7 h-full">
+                <div
+                  className="w-[52px] h-[52px] rounded-2xl flex items-center justify-center text-white mb-5"
+                  style={{ background: category.gradient }}
+                >
+                  {category.icon}
+                </div>
+                <h3 className="font-[Sora] font-bold text-[18px] mb-4 text-[#f3f6fa]">
+                  {category.title}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="bg-white/5 text-[#a9b4c4] px-3 py-1.5 rounded-full text-[12.5px] font-semibold border border-white/8"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {category.title}
-              </h3>
-
-              {/* Skills */}
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        {/* Cursos em Andamento */}
-        <div className="mt-16 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 border border-blue-200 animate-fade-in-up">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+        <Reveal className="mt-10 bg-gradient-to-br from-[#2ec0ee]/8 to-[#1577d6]/5 border border-[#2ec0ee]/20 rounded-[22px] p-8">
+          <h3 className="font-[Sora] font-bold text-[19px] mb-5 text-[#f3f6fa]">
             📚 Cursos em Andamento
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid gap-3.5" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
             <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-blue-700 rounded-full" />
-              <span className="text-gray-700">Node.js - Desenvolvimento Backend</span>
+              <div className="w-2 h-2 rounded-full bg-[#2ec0ee] flex-shrink-0" />
+              <span className="text-[#a9b4c4]">Node.js — Desenvolvimento Backend</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-blue-700 rounded-full" />
-              <span className="text-gray-700">Especializando em Full Stack</span>
+              <div className="w-2 h-2 rounded-full bg-[#2ec0ee] flex-shrink-0" />
+              <span className="text-[#a9b4c4]">Especializando em Full Stack</span>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

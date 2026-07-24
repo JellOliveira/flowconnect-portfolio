@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Play, X } from "lucide-react";
+import { useRef, useState } from "react";
+import { Play, X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import Reveal from "./Reveal";
 
 /**
  * FLOWCONNECT DEV - Projects Section
- * Design Philosophy: Minimalismo Corporativo
- * - Grid de cards com efeito hover
- * - Modal para visualizar vídeos
- * - Animações suaves
+ * Redesign 2026: carrossel horizontal com scroll-snap, thumbnails estáticos
+ * (posters) + botão play, modal com vídeo real e chips de tecnologia
+ * coloridos por ferramenta.
  */
 
 interface Project {
@@ -15,8 +15,10 @@ interface Project {
   company: string;
   description: string;
   technologies: string[];
-  videoPath: string;
+  video?: string;
+  poster?: string;
   image?: string;
+  gradient?: string;
 }
 
 const projects: Project[] = [
@@ -27,7 +29,9 @@ const projects: Project[] = [
     description:
       "Sistema de chatbot inteligente via WhatsApp com automação N8N, menu interativo por loja e setor, distribuição automática por fila de funcionários, registro completo de atendimentos no Google Sheets, tratamento de mensagens fora do horário comercial e envio automático de pesquisa de satisfação com análise de conversão.",
     technologies: ["N8N", "WhatsApp API", "Google Sheets", "Automação"],
-    videoPath: "/images/chatbot-c-amorim-compressed.mp4",
+    video: "/images/chatbot-c-amorim-compressed.mp4",
+    poster: "/images/poster-chatbot-amorim.jpg",
+    gradient: "linear-gradient(135deg,#2EC0EE,#1577D6)",
   },
   {
     id: "2",
@@ -36,8 +40,9 @@ const projects: Project[] = [
     description:
       "Desenvolvimento completo de site profissional com apresentação de soluções de automação, onde é feito um disparo de mensagem para uma lista de leads e é feito um agendamento de mensagem individual e em grupos. Design responsivo e otimizado para anexar a mensagem que deseja disparar para os leads de uma só vez com espaçamento de segundos para cada lead.",
     technologies: ["HTML", "CSS", "Evolution API", "N8N", "Design Responsivo"],
-    videoPath:
-      "/images/Apresentação do site FlowConnect Dev.mp4",
+    video: "/images/Apresentação do site FlowConnect Dev.mp4",
+    poster: "/images/poster-cde-digital.jpg",
+    gradient: "linear-gradient(135deg,#1F94E0,#A78BFA)",
   },
   {
     id: "3",
@@ -46,7 +51,7 @@ const projects: Project[] = [
     description:
       "Sistema de automação que envia lembretes automáticos via WhatsApp para agendamentos. Integração com calendário do Google Agenda.",
     technologies: ["N8N", "WhatsApp", "Python", "API Evolution"],
-    videoPath: "/images/lembrete de agendamento.jpg",
+    image: "/images/lembrete de agendamento.jpg",
   },
   {
     id: "4",
@@ -65,7 +70,9 @@ const projects: Project[] = [
       "Automação",
       "Typeform",
     ],
-    videoPath: "/images/automacao-contrato-cde-educacao.mp4",
+    video: "/images/automacao-contrato-cde-educacao.mp4",
+    poster: "/images/poster-contrato-cde.jpg",
+    gradient: "linear-gradient(135deg,#2BD98B,#1577D6)",
   },
   {
     id: "5",
@@ -81,7 +88,9 @@ const projects: Project[] = [
       "SQL (PostgreSQL)",
       "Supabase",
     ],
-    videoPath: "/images/plataforma-cursos-escola-gideao.mp4",
+    video: "/images/plataforma-cursos-escola-gideao.mp4",
+    poster: "/images/poster-gideao.jpg",
+    gradient: "linear-gradient(135deg,#A78BFA,#1577D6)",
   },
   {
     id: "6",
@@ -102,157 +111,251 @@ const projects: Project[] = [
       "Chart.js",
       "JWT + bcrypt",
     ],
-    videoPath: "/images/flowmoney-controle-financeiro.mp4",
+    video: "/images/flowmoney-controle-financeiro.mp4",
+    poster: "/images/poster-flowmoney.jpg",
+    gradient: "linear-gradient(135deg,#2BB7E8,#2BD98B)",
   },
 ];
 
+const techColors: Record<string, string> = {
+  N8N: "#FF6B8A",
+  Make: "#8B7CF6",
+  "WhatsApp API": "#2BD98B",
+  WhatsApp: "#2BD98B",
+  "Google Sheets": "#34C77B",
+  "Google Docs API": "#34C77B",
+  Automação: "#2EC0EE",
+  HTML: "#FF8A65",
+  HTML5: "#FF8A65",
+  CSS: "#4FC3F7",
+  CSS3: "#4FC3F7",
+  "Evolution API": "#2BD8C4",
+  Python: "#FFD166",
+  JavaScript: "#F5D547",
+  TypeScript: "#5B9BF6",
+  "SQL (PostgreSQL)": "#6FA8DC",
+  PostgreSQL: "#6FA8DC",
+  Supabase: "#3ECF8E",
+  OpenAI: "#74E0C4",
+  "Node.js": "#8CD867",
+  "Express.js": "#8CD867",
+  "Autentique API": "#C792EA",
+  Typeform: "#FF6B6B",
+  "API Evolution": "#2BD8C4",
+  GraphQL: "#E434AA",
+  Brevo: "#0B996E",
+  "JWT + bcrypt": "#F6A45C",
+  "Chart.js": "#FF6384",
+  "Design Responsivo": "#2EC0EE",
+};
+
+const techColor = (name: string) => techColors[name] || "#2EC0EE";
+
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [hover, setHover] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const isImage = (path: string) => /\.(jpg|jpeg|png|gif)$/i.test(path);
-  const isVideo = (path: string) => /\.(mp4|webm|mov)$/i.test(path);
+  const scrollBy = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.85;
+    el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+  };
 
   return (
-    <section
-      id="projects"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative"
-    >
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
+    <section id="projects" className="py-24 px-6 bg-[#050608] relative">
+      <div className="max-w-[1240px] mx-auto">
+        <Reveal className="text-center mb-14">
+          <span className="inline-block px-4 py-[7px] bg-white/4 border border-white/10 text-[#2ec0ee] rounded-full text-[12.5px] font-bold mb-4">
             Portfólio
           </span>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="font-[Sora] font-extrabold text-[clamp(2rem,3.8vw,2.8rem)] mb-3.5 tracking-[-0.02em] text-[#f3f6fa]">
             Projetos em Destaque
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Soluções de automação e desenvolvimento que transformaram processos
-            e geraram resultados reais para empresas.
+          <p className="text-[#a9b4c4] text-[17px] max-w-[600px] mx-auto">
+            Soluções de automação e desenvolvimento que transformaram
+            processos e geraram resultados reais.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="shadow-float rounded-xl overflow-hidden bg-white border border-gray-200 hover:border-blue-300 transition-all duration-300 group animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Thumbnail */}
-              <div className="relative h-48 bg-gradient-to-br from-blue-100 to-cyan-100 overflow-hidden">
-                {isImage(project.videoPath) ? (
-                  <img
-                    src={project.videoPath}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                ) : (
-                  <>
-                    <video
-                      src={project.videoPath}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
-                  </>
-                )}
+        <div
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          className="relative"
+        >
+          <button
+            onClick={() => scrollBy("left")}
+            aria-label="Anterior"
+            className={`absolute -left-2 top-1/2 -translate-y-1/2 z-20 w-[46px] h-[46px] rounded-full bg-[#0a0c10]/85 border border-white/15 text-[#f3f6fa] flex items-center justify-center backdrop-blur transition-opacity duration-300 ${
+              hover ? "opacity-100" : "opacity-0"
+            } hidden md:flex`}
+          >
+            <ChevronLeft className="w-[22px] h-[22px]" />
+          </button>
+          <button
+            onClick={() => scrollBy("right")}
+            aria-label="Próximo"
+            className={`absolute -right-2 top-1/2 -translate-y-1/2 z-20 w-[46px] h-[46px] rounded-full bg-[#0a0c10]/85 border border-white/15 text-[#f3f6fa] flex items-center justify-center backdrop-blur transition-opacity duration-300 ${
+              hover ? "opacity-100" : "opacity-0"
+            } hidden md:flex`}
+          >
+            <ChevronRight className="w-[22px] h-[22px]" />
+          </button>
 
-                {/* Play Button */}
-                <button
-                  onClick={() => setSelectedProject(project)}
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto pb-5 pt-1.5 px-1"
+            style={{ scrollSnapType: "x mandatory" }}
+          >
+            {projects.map((project, index) => (
+              <Reveal
+                key={project.id}
+                delay={index * 60}
+                className="flex-shrink-0 bg-white/2.5 border border-white/9 rounded-[22px] overflow-hidden flex flex-col hover:border-[#2ec0ee]/40 hover:-translate-y-2 hover:shadow-[0_24px_60px_-20px_rgba(31,148,224,0.35)] transition-all duration-300"
+                as="div"
+              >
+                <div
+                  style={{ scrollSnapAlign: "start", width: "320px" }}
+                  className="flex flex-col h-full"
                 >
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                    <Play className="w-8 h-8 text-blue-700 ml-1" />
-                  </div>
-                </button>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <p className="text-sm font-semibold text-blue-700 mb-2 uppercase tracking-wide">
-                  {project.company}
-                </p>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium"
+                  {project.video ? (
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="h-[175px] overflow-hidden relative cursor-pointer w-full"
                     >
-                      {tech}
-                    </span>
-                  ))}
+                      <img
+                        src={project.poster}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/28 flex items-center justify-center">
+                        <div className="w-[52px] h-[52px] rounded-full bg-white/92 flex items-center justify-center text-[#1577d6] shadow-[0_10px_26px_-6px_rgba(0,0,0,0.5)]">
+                          <Play className="w-6 h-6 ml-0.5" fill="currentColor" />
+                        </div>
+                      </div>
+                    </button>
+                  ) : project.image ? (
+                    <div className="h-[175px] overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : null}
+
+                  <div className="p-6 flex flex-col flex-1">
+                    <p className="text-[#2ec0ee] text-[11.5px] font-bold uppercase tracking-[.07em] mb-2">
+                      {project.company}
+                    </p>
+                    <h3 className="font-[Sora] font-bold text-[18px] mb-2.5 leading-[1.35] text-[#f3f6fa]">
+                      {project.title}
+                    </h3>
+                    <p className="text-[#a9b4c4] text-sm leading-[1.6] mb-4 line-clamp-3">
+                      {project.description}
+                    </p>
+                    <p className="text-[#6b7688] text-[10.5px] font-bold uppercase tracking-[.08em] mb-2.5">
+                      Stack principal
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {project.technologies.slice(0, 4).map((tech) => {
+                        const color = techColor(tech);
+                        return (
+                          <span
+                            key={tech}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold"
+                            style={{
+                              background: "rgba(255,255,255,.03)",
+                              border: `1px solid ${color}55`,
+                              color,
+                            }}
+                          >
+                            <span
+                              className="w-[7px] h-[7px] rounded-full"
+                              style={{ background: color }}
+                            />
+                            {tech}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="mt-auto inline-flex items-center gap-1.5 text-[#1577d6] font-bold text-sm"
+                    >
+                      Ver detalhes <ArrowRight className="w-[15px] h-[15px]" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Modal de Vídeo */}
+      {/* Modal de Projeto */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fade-in-up">
-          <div className="bg-white rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            {/* Header Modal */}
-            <div className="flex justify-between items-center p-6 border-b border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900">
-                {selectedProject.title}
-              </h3>
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <X className="w-6 h-6 text-gray-600" />
-              </button>
-            </div>
-
-            {/* Conteúdo Modal */}
-            <div className="p-6">
-              {isImage(selectedProject.videoPath) ? (
-                <img
-                  src={selectedProject.videoPath}
-                  alt={selectedProject.title}
-                  className="w-full rounded-lg"
-                />
-              ) : (
-                <video
-                  src={selectedProject.videoPath}
-                  controls
-                  autoPlay
-                  className="w-full rounded-lg bg-black"
-                />
-              )}
-
-              <div className="mt-6">
-                <p className="text-sm font-semibold text-blue-700 mb-2 uppercase">
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-sm p-6"
+          onClick={() => setSelectedProject(null)}
+        >
+          <div
+            className="bg-[#0a0c10] border border-white/12 rounded-[22px] max-w-[720px] w-full max-h-[88vh] overflow-y-auto shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-start gap-4 px-7 py-6 border-b border-white/8">
+              <div>
+                <p className="text-[#2ec0ee] text-xs font-bold uppercase tracking-[.06em] mb-1.5">
                   {selectedProject.company}
                 </p>
-                <p className="text-gray-600 mb-4">{selectedProject.description}</p>
-
-                <div>
-                  <p className="font-semibold text-gray-900 mb-3">
-                    Tecnologias Utilizadas:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech) => (
+                <h3 className="font-[Sora] font-bold text-[22px] text-[#f3f6fa]">
+                  {selectedProject.title}
+                </h3>
+              </div>
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="w-[38px] h-[38px] flex-shrink-0 flex items-center justify-center bg-white/5 border border-white/10 rounded-[10px] text-[#a9b4c4]"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-7">
+              {selectedProject.video && (
+                <video
+                  src={selectedProject.video}
+                  controls
+                  autoPlay
+                  className="w-full rounded-2xl bg-black mb-5 max-h-[50vh]"
+                />
+              )}
+              <p className="text-[#a9b4c4] leading-[1.75] mb-6">
+                {selectedProject.description}
+              </p>
+              <p className="font-bold text-[#f3f6fa] mb-3">
+                Tecnologias utilizadas:
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {selectedProject.technologies.map((tech) => {
+                  const color = techColor(tech);
+                  return (
+                    <span
+                      key={tech}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-bold text-[13.5px]"
+                      style={{
+                        background: "rgba(255,255,255,.03)",
+                        border: `1px solid ${color}55`,
+                        color,
+                      }}
+                    >
                       <span
-                        key={tech}
-                        className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                        className="w-[7px] h-[7px] rounded-full"
+                        style={{ background: color }}
+                      />
+                      {tech}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </div>
