@@ -272,6 +272,26 @@
     transform: none;
   }
 
+  /* Barra de rolagem azul (carrossel de projetos) */
+  .fc-scrollbar-blue {
+    scrollbar-width: thin;
+    scrollbar-color: #2ec0ee rgba(255, 255, 255, 0.06);
+  }
+  .fc-scrollbar-blue::-webkit-scrollbar {
+    height: 8px;
+  }
+  .fc-scrollbar-blue::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 99px;
+  }
+  .fc-scrollbar-blue::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #2ec0ee, #1577d6);
+    border-radius: 99px;
+  }
+  .fc-scrollbar-blue::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #2ec0ee, #2ec0ee);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .fc-reveal {
       opacity: 1 !important;

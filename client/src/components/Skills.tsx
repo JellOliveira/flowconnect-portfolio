@@ -100,13 +100,12 @@ export default function Skills() {
             <Reveal
               key={category.title}
               delay={index * 80}
-              className="relative rounded-[22px] p-0.5 overflow-hidden hover:-translate-y-1.5 transition-transform duration-300"
+              className="relative rounded-[22px] p-0.5 hover:-translate-y-1.5 transition-transform duration-300"
             >
               <div
-                className="absolute left-1/2 top-1/2 w-[220%] h-[220%] pointer-events-none"
+                className="absolute -inset-[2px] rounded-[22px] pointer-events-none"
                 style={{
-                  transform: "translate(-50%,-50%)",
-                  background: `conic-gradient(from 90deg, transparent 0%, transparent 82%, ${category.accent} 100%)`,
+                  background: `conic-gradient(from 0deg, ${category.accent}, transparent 25%, ${category.accent}aa 50%, transparent 75%, ${category.accent})`,
                   animation: `rotateGlow ${5 + index * 0.6}s linear infinite`,
                 }}
               />

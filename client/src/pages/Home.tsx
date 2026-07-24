@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Companies from "@/components/Companies";
+import ClientsStrip from "@/components/ClientsStrip";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Certificates from "@/components/Certificates";
@@ -29,6 +30,7 @@ export default function Home() {
       <main>
         <Hero />
         <Companies />
+        <ClientsStrip />
         <Projects />
         <Skills />
         <Certificates />

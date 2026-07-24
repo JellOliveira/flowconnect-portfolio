@@ -205,7 +205,7 @@ export default function Projects() {
 
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto pb-5 pt-1.5 px-1"
+            className="flex gap-6 overflow-x-auto pb-5 pt-1.5 px-1 fc-scrollbar-blue"
             style={{ scrollSnapType: "x mandatory" }}
           >
             {projects.map((project, index) => (
