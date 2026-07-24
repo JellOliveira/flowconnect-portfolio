@@ -161,7 +161,7 @@ export default function Contact() {
           <Reveal delay={100}>
             <form
               onSubmit={handleSubmit}
-              className="bg-white/2.5 border border-white/9 rounded-[22px] p-8"
+              className="bg-white/2.5 border border-white/9 rounded-[22px] p-8 shadow-[0_30px_70px_-25px_rgba(31,148,224,0.45)]"
             >
               <div className="mb-5">
                 <label
@@ -178,7 +178,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="Seu nome"
-                  className="w-full bg-white/3 border border-white/10 rounded-xl px-3.5 py-3 text-[#f3f6fa] text-sm placeholder:text-[#6b7688] focus:outline-none focus:border-[#1577d6] focus:ring-4 focus:ring-[#1f94e0]/16 transition-all"
+                  className="w-full bg-white/3 border border-[#2ec0ee]/35 shadow-[0_0_12px_rgba(46,192,238,0.18)] rounded-xl px-3.5 py-3 text-[#f3f6fa] text-sm placeholder:text-[#6b7688] focus:outline-none focus:border-[#2ec0ee] focus:shadow-[0_0_18px_rgba(46,192,238,0.4)] focus:ring-4 focus:ring-[#1f94e0]/16 transition-all"
                 />
               </div>
 
@@ -197,7 +197,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="seu@email.com"
-                  className="w-full bg-white/3 border border-white/10 rounded-xl px-3.5 py-3 text-[#f3f6fa] text-sm placeholder:text-[#6b7688] focus:outline-none focus:border-[#1577d6] focus:ring-4 focus:ring-[#1f94e0]/16 transition-all"
+                  className="w-full bg-white/3 border border-[#2ec0ee]/35 shadow-[0_0_12px_rgba(46,192,238,0.18)] rounded-xl px-3.5 py-3 text-[#f3f6fa] text-sm placeholder:text-[#6b7688] focus:outline-none focus:border-[#2ec0ee] focus:shadow-[0_0_18px_rgba(46,192,238,0.4)] focus:ring-4 focus:ring-[#1f94e0]/16 transition-all"
                 />
               </div>
 
@@ -216,7 +216,7 @@ export default function Contact() {
                   required
                   rows={5}
                   placeholder="Conte-me sobre seu projeto..."
-                  className="w-full bg-white/3 border border-white/10 rounded-xl px-3.5 py-3 text-[#f3f6fa] text-sm placeholder:text-[#6b7688] resize-none focus:outline-none focus:border-[#1577d6] focus:ring-4 focus:ring-[#1f94e0]/16 transition-all"
+                  className="w-full bg-white/3 border border-[#2ec0ee]/35 shadow-[0_0_12px_rgba(46,192,238,0.18)] rounded-xl px-3.5 py-3 text-[#f3f6fa] text-sm placeholder:text-[#6b7688] resize-none focus:outline-none focus:border-[#2ec0ee] focus:shadow-[0_0_18px_rgba(46,192,238,0.4)] focus:ring-4 focus:ring-[#1f94e0]/16 transition-all"
                 />
               </div>
 

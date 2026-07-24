@@ -76,6 +76,8 @@ export default function Hero() {
                 <span className="bg-gradient-to-br from-[#2ec0ee] to-[#1577d6] bg-clip-text text-transparent">
                   Automação &amp; IA
                 </span>
+                <br />
+                <span className="text-[#f3f6fa]">Full Stack</span>
               </h1>
             </Reveal>
 
