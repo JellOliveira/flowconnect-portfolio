@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Play, X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { Play, X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-react";
 import Reveal from "./Reveal";
 
 /**
@@ -178,6 +178,12 @@ export default function Projects() {
             processos e geraram resultados reais.
           </p>
         </Reveal>
+
+        <div className="flex md:hidden items-center justify-center gap-2 text-[#6b7688] text-xs font-semibold mb-4 -mt-6">
+          <ArrowLeft className="w-3.5 h-3.5 animate-swipe-hint-left" />
+          Arraste para o lado para ver mais projetos
+          <ArrowRight className="w-3.5 h-3.5 animate-swipe-hint-right" />
+        </div>
 
         <div
           onMouseEnter={() => setHover(true)}

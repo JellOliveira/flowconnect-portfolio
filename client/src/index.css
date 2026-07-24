@@ -250,6 +250,16 @@
     from { opacity: 0; transform: translateY(26px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes swipeHintLeft {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(-4px); opacity: 1; }
+  }
+  @keyframes swipeHintRight {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(4px); opacity: 1; }
+  }
+  .animate-swipe-hint-left { animation: swipeHintLeft 1.4s ease-in-out infinite; }
+  .animate-swipe-hint-right { animation: swipeHintRight 1.4s ease-in-out infinite; }
 
   .animate-float-blob-a { animation: floatBlobA 17s ease-in-out infinite alternate; }
   .animate-float-blob-b { animation: floatBlobB 19s ease-in-out infinite alternate; }
@@ -300,8 +310,6 @@
     }
     .animate-float-blob-a,
     .animate-float-blob-b,
-    .animate-fc-marquee,
-    .animate-fc-marquee-slow,
     .animate-grad-shift,
     .animate-float-badge,
     .animate-rotate-glow,
