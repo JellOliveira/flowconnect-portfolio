@@ -25,7 +25,7 @@ const skillCategories: SkillCategory[] = [
   {
     title: "Automação",
     icon: <Activity className="w-6 h-6" />,
-    skills: ["N8N", "Make", "API Evolution", "Integração com APIs", "WhatsApp Automation"],
+    skills: ["N8N", "Make", "API Evolution", "Integração com APIs", "WhatsApp Automation", "VPS", "EasyPanel"],
     gradient: "linear-gradient(135deg,#1F94E0,#1577D6)",
     accent: "#1F94E0",
   },
@@ -75,6 +75,8 @@ const skillCategories: SkillCategory[] = [
       "Windows",
       "VS Code",
       "Figma",
+      "Máquina Virtual (VM)",
+      "Antigravity IDE",
     ],
     gradient: "linear-gradient(135deg,#FFB454,#FF6BA6)",
     accent: "#FFB454",
