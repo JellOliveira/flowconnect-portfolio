@@ -269,7 +269,7 @@ export default function Projects() {
 
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto pb-5 pt-1.5 px-1 fc-scrollbar-blue"
+            className="flex items-start gap-6 overflow-x-auto pb-5 pt-1.5 px-1 fc-scrollbar-blue"
             style={{ scrollSnapType: "x mandatory" }}
           >
             {projects.map((project, index) => (
@@ -323,7 +323,7 @@ export default function Projects() {
                       Stack principal
                     </p>
                     <div className="flex flex-wrap gap-2 mb-5">
-                      {project.technologies.slice(0, 4).map((tech) => {
+                      {project.technologies.map((tech) => {
                         const color = techColor(tech);
                         return (
                           <span
