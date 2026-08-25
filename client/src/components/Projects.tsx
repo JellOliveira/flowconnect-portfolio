@@ -9,11 +9,16 @@ import Reveal from "./Reveal";
  * coloridos por ferramenta.
  */
 
+/** Um bloco de detalhe do projeto: string = parágrafo, string[] = lista com marcadores */
+type DetailBlock = string | string[];
+
 interface Project {
   id: string;
   title: string;
   company: string;
   description: string;
+  /** Conteúdo estruturado (parágrafos + listas) exibido no modal. Se ausente, usa `description`. */
+  details?: DetailBlock[];
   technologies: string[];
   video?: string;
   poster?: string;
@@ -120,7 +125,24 @@ const projects: Project[] = [
     title: "Sistema de Onboarding Automático",
     company: "CDE Educação e outras empresas",
     description:
-      "Onboarding Painel — automação de pós-venda para mentorias e eventos. Sistema full-stack que elimina o atraso e o trabalho manual no onboarding de clientes: assim que uma venda acontece (via webhook de qualquer plataforma — Hotmart, Kiwify, Assiny, etc.), o sistema dispara automaticamente mensagens de WhatsApp e e-mail personalizadas, registra tudo em tempo real e dá visibilidade completa do funil pra equipe. Desenvolvi tanto o painel web (React + TypeScript) quanto a API/backend (Node + Express) que orquestra a automação, integrando com Google Sheets como banco de dados operacional, WhatsApp Business (via Evolution API) e envio de e-mail transacional, tudo coordenado por workflows n8n. Principais funcionalidades: cadastro de produtos (mentorias/eventos) com geração automática de webhook único e planilha de log — zero configuração manual por produto; editor de sequência de mensagens WhatsApp (texto, áudio, imagem, documento) com drag-and-drop para reordenar blocos; editor de e-mail rich-text (WYSIWYG) com inserção de botões/links customizados; histórico completo de envios com detecção automática de duplicatas, importação em massa (colar lista/CSV) e reenvio manual; sistema de credenciamento para eventos (check-in em tempo real, otimizado para tablet); white-label com personalização de logo, cores e nome da marca em tempo real via CSS custom properties; autenticação por sessão com dois níveis de acesso (admin/cliente); dark mode completo e layout responsivo. Da concepção ao deploy: modelagem de dados, API REST, autenticação, integração com APIs externas (Google, WhatsApp, e-mail, upload de mídia), design system próprio e containerização para produção.",
+      "Onboarding Painel — automação de pós-venda para mentorias e eventos. Sistema full-stack que elimina o atraso e o trabalho manual no onboarding de clientes, disparando automaticamente WhatsApp e e-mail assim que uma venda acontece.",
+    details: [
+      "Onboarding Painel — Automação de pós-venda para mentorias e eventos",
+      "Sistema full-stack que elimina o atraso e o trabalho manual no onboarding de clientes: assim que uma venda acontece (via webhook de qualquer plataforma — Hotmart, Kiwify, Assiny, etc.), o sistema dispara automaticamente mensagens de WhatsApp e e-mail personalizadas, registra tudo em tempo real e dá visibilidade completa do funil pra equipe.",
+      "Desenvolvi tanto o painel web (React + TypeScript) quanto a API/backend (Node + Express) que orquestra a automação, integrando com Google Sheets como banco de dados operacional, WhatsApp Business (via Evolution API) e envio de e-mail transacional, tudo coordenado por workflows n8n.",
+      "Principais funcionalidades:",
+      [
+        "Cadastro de produtos (mentorias/eventos) com geração automática de webhook único e planilha de log — zero configuração manual por produto",
+        "Editor de sequência de mensagens WhatsApp (texto, áudio, imagem, documento) com drag-and-drop para reordenar blocos",
+        "Editor de e-mail rich-text (WYSIWYG) com inserção de botões/links customizados",
+        "Histórico completo de envios com detecção automática de duplicatas, importação em massa (colar lista/CSV) e reenvio manual",
+        "Sistema de credenciamento para eventos (check-in em tempo real, otimizado para tablet)",
+        "White-label: cada cliente pode personalizar logo, cores e nome da marca no próprio painel, aplicado em tempo real via CSS custom properties",
+        "Autenticação por sessão com dois níveis de acesso (admin/cliente)",
+        "Dark mode completo, layout responsivo (desktop/tablet/mobile)",
+      ],
+      "Da concepção ao deploy: modelagem de dados, API REST, autenticação, integração com APIs externas (Google, WhatsApp, e-mail, upload de mídia), design system próprio e containerização para produção.",
+    ],
     technologies: [
       "React",
       "TypeScript",
@@ -371,9 +393,23 @@ export default function Projects() {
                   className="w-full rounded-2xl bg-black mb-5 max-h-[50vh]"
                 />
               )}
-              <p className="text-[#a9b4c4] leading-[1.75] mb-6">
-                {selectedProject.description}
-              </p>
+              <div className="text-[#a9b4c4] leading-[1.75] mb-6 flex flex-col gap-4">
+                {(selectedProject.details ?? [selectedProject.description]).map(
+                  (block, i) =>
+                    Array.isArray(block) ? (
+                      <ul key={i} className="flex flex-col gap-2 pl-1">
+                        {block.map((item, j) => (
+                          <li key={j} className="flex gap-2.5">
+                            <span className="w-[6px] h-[6px] rounded-full bg-[#2ec0ee] mt-2.5 flex-shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p key={i}>{block}</p>
+                    )
+                )}
+              </div>
               <p className="font-bold text-[#f3f6fa] mb-3">
                 Tecnologias utilizadas:
               </p>
