@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Play, X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-react";
+import { Play, X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft, Sparkles } from "lucide-react";
 import Reveal from "./Reveal";
 
 /**
@@ -269,7 +269,7 @@ export default function Projects() {
 
           <div
             ref={scrollRef}
-            className="flex items-start gap-6 overflow-x-auto pb-5 pt-1.5 px-1 fc-scrollbar-blue"
+            className="flex items-stretch gap-6 overflow-x-auto pb-5 pt-1.5 px-1 fc-scrollbar-blue"
             style={{ scrollSnapType: "x mandatory" }}
           >
             {projects.map((project, index) => (
@@ -323,7 +323,7 @@ export default function Projects() {
                       Stack principal
                     </p>
                     <div className="flex flex-wrap gap-2 mb-5">
-                      {project.technologies.map((tech) => {
+                      {project.technologies.slice(0, 4).map((tech) => {
                         const color = techColor(tech);
                         return (
                           <span
@@ -343,6 +343,15 @@ export default function Projects() {
                           </span>
                         );
                       })}
+                      {project.technologies.length > 4 && (
+                        <button
+                          onClick={() => setSelectedProject(project)}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border border-dashed border-[#2ec0ee]/50 text-[#2ec0ee] hover:bg-[#2ec0ee]/10 transition-colors"
+                        >
+                          <Sparkles className="w-3 h-3" />+
+                          {project.technologies.length - 4} no detalhe
+                        </button>
+                      )}
                     </div>
                     <button
                       onClick={() => setSelectedProject(project)}
