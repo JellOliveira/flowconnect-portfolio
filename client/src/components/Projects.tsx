@@ -115,6 +115,34 @@ const projects: Project[] = [
     poster: "/images/poster-flowmoney.jpg",
     gradient: "linear-gradient(135deg,#2BB7E8,#2BD98B)",
   },
+  {
+    id: "7",
+    title: "Sistema de Onboarding Automático",
+    company: "CDE Educação e outras empresas",
+    description:
+      "Onboarding Painel — automação de pós-venda para mentorias e eventos. Sistema full-stack que elimina o atraso e o trabalho manual no onboarding de clientes: assim que uma venda acontece (via webhook de qualquer plataforma — Hotmart, Kiwify, Assiny, etc.), o sistema dispara automaticamente mensagens de WhatsApp e e-mail personalizadas, registra tudo em tempo real e dá visibilidade completa do funil pra equipe. Desenvolvi tanto o painel web (React + TypeScript) quanto a API/backend (Node + Express) que orquestra a automação, integrando com Google Sheets como banco de dados operacional, WhatsApp Business (via Evolution API) e envio de e-mail transacional, tudo coordenado por workflows n8n. Principais funcionalidades: cadastro de produtos (mentorias/eventos) com geração automática de webhook único e planilha de log — zero configuração manual por produto; editor de sequência de mensagens WhatsApp (texto, áudio, imagem, documento) com drag-and-drop para reordenar blocos; editor de e-mail rich-text (WYSIWYG) com inserção de botões/links customizados; histórico completo de envios com detecção automática de duplicatas, importação em massa (colar lista/CSV) e reenvio manual; sistema de credenciamento para eventos (check-in em tempo real, otimizado para tablet); white-label com personalização de logo, cores e nome da marca em tempo real via CSS custom properties; autenticação por sessão com dois níveis de acesso (admin/cliente); dark mode completo e layout responsivo. Da concepção ao deploy: modelagem de dados, API REST, autenticação, integração com APIs externas (Google, WhatsApp, e-mail, upload de mídia), design system próprio e containerização para produção.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "Tailwind CSS",
+      "Google Sheets",
+      "Evolution API",
+      "N8N",
+      "Docker",
+      "Cloudinary",
+      "Vite",
+      "React Router",
+      "Brevo",
+      "Webhooks (Hotmart/Kiwify/Assiny)",
+      "Typeform",
+      "EasyPanel (VPS)",
+    ],
+    video: "/images/onboarding-automatico-cde.mp4",
+    poster: "/images/poster-onboarding-cde.jpg",
+    gradient: "linear-gradient(135deg,#1577D6,#2BD98B)",
+  },
 ];
 
 const techColors: Record<string, string> = {
@@ -147,6 +175,14 @@ const techColors: Record<string, string> = {
   "JWT + bcrypt": "#F6A45C",
   "Chart.js": "#FF6384",
   "Design Responsivo": "#2EC0EE",
+  React: "#61DAFB",
+  "React Router": "#CA4245",
+  "Tailwind CSS": "#38BDF8",
+  Docker: "#2496ED",
+  Cloudinary: "#3448C5",
+  Vite: "#A78BFA",
+  "Webhooks (Hotmart/Kiwify/Assiny)": "#FF8A65",
+  "EasyPanel (VPS)": "#8CD867",
 };
 
 const techColor = (name: string) => techColors[name] || "#2EC0EE";
