@@ -62,7 +62,7 @@ const skillCategories: SkillCategory[] = [
       "API Brevo",
       "Autentique API",
       "Typeform",
-      "Ubli",
+      "Ubli (WhatsApp)",
       "Meta Pixel",
       "Google Tag Manager",
     ],
