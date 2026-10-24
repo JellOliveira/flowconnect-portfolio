@@ -9,8 +9,14 @@ import Reveal from "./Reveal";
  * coloridos por ferramenta.
  */
 
-/** Um bloco de detalhe do projeto: string = parágrafo, string[] = lista com marcadores */
-type DetailBlock = string | string[];
+/** Um bloco de detalhe do projeto: string = parágrafo, string[] = lista com marcadores, { heading } = subtítulo */
+type DetailBlock = string | string[] | { heading: string };
+
+/**
+ * Vídeos longos ficam no Cloudflare R2 (bucket público) em vez de dentro do repositório.
+ * Cole aqui a URL pública do bucket (r2.dev ou domínio próprio), sem barra no final.
+ */
+const R2_PUBLIC_URL = "https://pub-aded3b2c873b4cecb719fe7635d437a2.r2.dev";
 
 interface Project {
   id: string;
@@ -165,6 +171,63 @@ const projects: Project[] = [
     poster: "/images/poster-onboarding-cde.jpg",
     gradient: "linear-gradient(135deg,#1577D6,#2BD98B)",
   },
+  {
+    id: "8",
+    title:
+      "Sistema de Onboarding Automático — Módulos Mentoria High Ticket e Formulários de Eventos",
+    company: "CDE Educação",
+    description:
+      "Evolução do painel de onboarding pós-venda da CDE Educação, com dois módulos novos: gestão de Mentoria High Ticket e criação automatizada de formulários para eventos, tirando da equipe o trabalho manual de montar formulários no Typeform e organizar dados dos alunos.",
+    details: [
+      "Evolução do painel de onboarding pós-venda da CDE Educação, com dois módulos novos: gestão de Mentoria High Ticket e criação automatizada de formulários para eventos. O objetivo foi tirar da equipe o trabalho manual de montar formulários no Typeform e de organizar os dados dos alunos.",
+      { heading: "Mentoria High Ticket e produtos de evento" },
+      [
+        "Fluxo próprio para mentorias de alto valor, com planilha espelho de acompanhamento e colunas de contato padronizadas (primeiro nome e telefone em formato internacional). A equipe sobe os dados na plataforma de atendimento sem retrabalho.",
+        'Controle de validade do acesso, com cartão e coluna de "Acesso expirado".',
+        'Novo tipo de produto "Imersão / Aulão", com mensagens de WhatsApp pelo número oficial de eventos e sem fila de ritmo.',
+        "Busca de produtos por nome ou código, botões de tutorial e POP (procedimento operacional padrão) dentro do painel, e planilhas internas com instruções de uso (LEIA-ME).",
+      ],
+      { heading: "Módulo de Formulários de Eventos (Typeform)" },
+      [
+        "Criação de formulários de Aplicação e Check-in a partir de modelos. O sistema preenche sozinho nome, cidade, datas, dias, horário, endereço e promessa do evento.",
+        "Prévia ao vivo, com a aparência real do Typeform, de cada tela antes de publicar.",
+        "Fluxo de aprovação (pendente → aguardando aprovação → publicado), com publicar, despublicar e excluir.",
+        "Designs personalizados com imagem de fundo, brilho, alinhamento, tamanho e cantos. Dá para criar um design novo a partir de um existente.",
+        "Planilha de respostas no Google Sheets criada automaticamente, ou vinculada a uma planilha existente. Ela sincroniza sozinha enquanto o evento está ativo, sem duplicar linhas.",
+        "Importação de formulários já existentes no Typeform, com opção de editar abertura, tela final e dados do evento.",
+        "Integração automática de Meta Pixel, Google Tag Manager e webhook de aplicações, com conferência de que a página pública está certa.",
+      ],
+      { heading: "Segurança e controle de acesso" },
+      [
+        "Permissões por usuário em níveis (ver, criar/editar, despublicar/excluir), mais permissões extras: ver contatos, enviar mensagem, excluir aluno e ver POPs. O administrador mantém acesso total.",
+      ],
+      "Do desenho do banco à interface: modelagem no Supabase, API REST, integração com APIs externas (Typeform, Google Drive e Sheets, WhatsApp), workflows n8n e interface em React.",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "Tailwind CSS",
+      "Vite",
+      "Supabase (PostgreSQL)",
+      "Typeform API",
+      "Google Sheets API",
+      "Google Drive API",
+      "N8N",
+      "Webhooks",
+      "WhatsApp API oficial",
+      "Ubli (WhatsApp)",
+      "Cloudflare R2",
+      "Meta Pixel",
+      "Google Tag Manager",
+      "Docker",
+      "EasyPanel (VPS)",
+    ],
+    video: `${R2_PUBLIC_URL}/funcao-nova-sistema-onboarding.mp4`,
+    poster: "/images/poster-onboarding-modulos.jpg",
+    gradient: "linear-gradient(135deg,#2BD98B,#1577D6)",
+  },
 ];
 
 const techColors: Record<string, string> = {
@@ -205,6 +268,16 @@ const techColors: Record<string, string> = {
   Vite: "#A78BFA",
   "Webhooks (Hotmart/Kiwify/Assiny)": "#FF8A65",
   "EasyPanel (VPS)": "#8CD867",
+  "Supabase (PostgreSQL)": "#3ECF8E",
+  "Typeform API": "#FF6B6B",
+  "Google Sheets API": "#34C77B",
+  "Google Drive API": "#FFC83D",
+  Webhooks: "#FF8A65",
+  "WhatsApp API oficial": "#2BD98B",
+  "Ubli (WhatsApp)": "#25D366",
+  "Cloudflare R2": "#F6821F",
+  "Meta Pixel": "#0A84FF",
+  "Google Tag Manager": "#4FC3F7",
 };
 
 const techColor = (name: string) => techColors[name] || "#2EC0EE";
@@ -414,8 +487,15 @@ export default function Projects() {
                           </li>
                         ))}
                       </ul>
-                    ) : (
+                    ) : typeof block === "string" ? (
                       <p key={i}>{block}</p>
+                    ) : (
+                      <h4
+                        key={i}
+                        className="font-[Sora] font-bold text-[#f3f6fa] text-base mt-2"
+                      >
+                        {block.heading}
+                      </h4>
                     )
                 )}
               </div>
